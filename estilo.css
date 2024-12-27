@@ -1,0 +1,21 @@
+body {
+	background-color: #65a355;
+	background:  #65a355;
+}
+header span{
+	font-size: 50px;
+	font-family: cursive;
+	font-style: all;
+	position: center;
+	color: #0000cd;
+
+}
+@keyframes spin{
+  from{
+    transform: rotateX(-20deg) rotateY(0deg);
+  }
+
+  to{
+    transform: rotateX(-20deg) rotateY(360deg);
+  }
+}
