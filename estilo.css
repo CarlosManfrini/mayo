@@ -10,3 +10,12 @@ header span{
 	color: #0000cd;
 
 }
+@media (min-width: 768px) {
+
+.item {
+
+flex-basis: 48%;
+
+}
+
+}
