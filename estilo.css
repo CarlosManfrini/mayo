@@ -19,3 +19,11 @@ header span{
     transform: rotateX(-20deg) rotateY(360deg);
   }
 }
+ @media (max-width: 768px) {
+      header {
+        font-size: 1.5rem;
+      }
+      header.scrolled {
+        font-size: 1.2rem;
+      }
+    }
