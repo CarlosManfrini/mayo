@@ -4,7 +4,7 @@ body {
 }
 header span{
 	font-size: 50px;
-	font-family: cursive;
+	font-family: serif, sans-serif, monospace;
 	font-style: all;
 	position: center;
 	color: #0000cd;
