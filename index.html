@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+  <title>Postear Mensajes</title>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="escudo-canelones.png" alt="Escudo de Canelones" class="logo">
+      <span>SE SIENTE¡¡¡¡ LERETÉ INTENDENTE</span>
+    </div>
+  </header>
+  <main>
+    <section class="video-section">
+      <h2>Futuro</h2>
+      <video width="420" height="320" controls src="Lerete.mp4"></video>
+    </section>
+    <section class="message-section container">
+      <h2>Postea un mensaje</h2>
+      <div class="form-group">
+        <textarea id="messageInput" maxlength="200" placeholder="Escribe tu mensaje..."></textarea>
+      </div>
+      <button id="postButton" disabled>Postear</button>
+      <div class="messages" id="messages"></div>
+    </section>
+  </main>
+  <script src="main.js"></script>
+</body>
+</html>
