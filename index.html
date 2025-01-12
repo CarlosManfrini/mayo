@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="estilo.css">
+  <title>LERETÉ INTENDENTE</title>
+</head>
+<body>
+  <header>
+    <div class="header-content">
+      <img src="escudo-canelones.png" alt="Escudo de Canelones" class="logo">
+      <h1>LERETÉ SIEMPRE ESTÁ</h1>
+    </div>
+  </header>
+
+  <main>
+    <!-- Sección de video -->
+    <section class="video-section">
+      <h2>Futuro</h2>
+      <video class="responsive-video" controls>
+        <source src="Lerete.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+      </video>
+    </section>
+
+    <!-- Redes Sociales -->
+    <section class="social-media">
+      <h2>¡Síguenos en nuestras redes sociales!</h2>
+      <div class="social-links">
+        <a href="https://www.instagram.com" target="_blank">Instagram</a>
+        <a href="https://www.facebook.com" target="_blank">Facebook</a>
+        <a href="https://www.youtube.com" target="_blank">YouTube</a>
+      </div>
+      <div id="latest-posts">
+        <h3>Últimas publicaciones</h3>
+        <div id="instagram-post"></div>
+        <div id="facebook-post"></div>
+        <div id="youtube-post"></div>
+      </div>
+    </section>
+
+    <!-- Calendario de Actividades -->
+    <section class="calendar-section">
+      <h2>Calendario de Actividades</h2>
+      <div id="calendar"></div>
+    </section>
+  </main>
+
+  <script>
+    // Función para mostrar publicaciones en redes sociales
+    const displayPost = (platform, content) => {
+      const postDiv = document.getElementById(`${platform}-post`);
+      postDiv.innerHTML = content;
+    };
+
+    async function fetchSocialPosts() {
+      try {
+        // Instagram
+        const instagramResponse = await fetch('https://graph.instagram.com/me/media?fields=id,caption,media_type,media_url&access_token=TU_ACCESS_TOKEN');
+        const instagramData = await instagramResponse.json();
+        const instagramPost = instagramData.data[0];
+        displayPost('instagram', `
+          <h4>Instagram</h4>
+          <img src="${instagramPost.media_url}" alt="Publicación de Instagram" style="width:100%;max-width:400px;">
+          <p>${instagramPost.caption || ''}</p>
+        `);
+
+        // Facebook
+        const facebookResponse = await fetch('https://graph.facebook.com/me/feed?fields=message,created_time&access_token=TU_ACCESS_TOKEN');
+        const facebookData = await facebookResponse.json();
+        const facebookPost = facebookData.data[0];
+        displayPost('facebook', `
+          <h4>Facebook</h4>
+          <p>${facebookPost.message || 'Sin texto en la publicación'}</p>
+          <small>${new Date(facebookPost.created_time).toLocaleString('es-ES')}</small>
+        `);
+
+        // YouTube
+        const youtubeResponse = await fetch('https://www.googleapis.com/youtube/v3/search?key=TU_API_KEY&channelId=TU_CHANNEL_ID&part=snippet&order=date&maxResults=1');
+        const youtubeData = await youtubeResponse.json();
+        const youtubeVideo = youtubeData.items[0];
+        displayPost('youtube', `
+          <h4>YouTube</h4>
+          <iframe width="420" height="315" src="https://www.youtube.com/embed/${youtubeVideo.id.videoId}" frameborder="0" allowfullscreen></iframe>
+          <p>${youtubeVideo.snippet.title}</p>
+        `);
+      } catch (error) {
+        console.error('Error obteniendo publicaciones:', error);
+      }
+    }
+
+    // Inicializar funciones
+    fetchSocialPosts();
+
+    // Crear calendario dinámico
+    const events = [
+      { title: 'Reunión mensual', date: '2025-01-12T10:00:00' },
+      { title: 'Taller de formación', date: '2025-01-15T15:00:00' },
+      { title: 'Evento comunitario', date: '2025-01-20T18:00:00' }
+    ];
+
+    const calendarDiv = document.getElementById('calendar');
+    events.forEach(event => {
+      const eventDiv = document.createElement('div');
+      eventDiv.className = 'event';
+      eventDiv.textContent = `${event.title} - ${new Date(event.date).toLocaleString('es-ES')}`;
+      calendarDiv.appendChild(eventDiv);
+    });
+
+    // Recordatorios para eventos
+    events.forEach(event => {
+      const eventDate = new Date(event.date);
+      const reminderTime = new Date(eventDate.getTime() - 24 * 60 * 60 * 1000);
+      const now = new Date();
+
+      if (reminderTime > now) {
+        setTimeout(() => {
+          alert(`Recordatorio: Mañana es el evento "${event.title}" a las ${eventDate.toLocaleTimeString('es-ES')}`);
+        }, reminderTime - now);
+      }
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,129 @@
+/* Variables CSS para colores reutilizables */
+:root {
+  --primary-color: #007bff;
+  --secondary-color: #65a355;
+  --background-gradient: linear-gradient(120deg, #65a355, #83c583);
+  --text-color-light: white;
+  --box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  --border-radius: 8px;
+}
+
+/* Estilo global */
+body {
+  font-family: 'Arial', sans-serif;
+  margin: 0;
+  padding: 0;
+  background: var(--background-gradient);
+  color: var(--text-color-light);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+header {
+  width: 100%;
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  padding: 15px 0;
+  box-shadow: var(--box-shadow);
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+
+.header-content .logo {
+  width: 60px;
+  height: 60px;
+}
+
+header h1 {
+  font-size: 2rem;
+  font-family: 'Georgia', serif;
+}
+
+main {
+  width: 90%;
+  max-width: 1200px;
+  margin-top: 20px;
+}
+
+.video-section,
+.social-media,
+.calendar-section {
+  background: white;
+  color: black;
+  border-radius: var(--border-radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: var(--box-shadow);
+}
+
+.video-section h2,
+.social-media h2,
+.calendar-section h2 {
+  font-size: 1.8rem;
+  margin-bottom: 15px;
+}
+
+.responsive-video {
+  width: 100%;
+  max-width: 600px;
+  border-radius: var(--border-radius);
+}
+
+.social-links a {
+  display: inline-block;
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  text-decoration: none;
+  padding: 10px 15px;
+  margin: 5px;
+  border-radius: var(--border-radius);
+  transition: background-color 0.3s ease;
+}
+
+.social-links a:hover {
+  background-color: #0056b3;
+}
+
+#latest-posts {
+  text-align: left;
+}
+
+#latest-posts h3 {
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+}
+
+.event {
+  margin: 10px 0;
+  padding: 10px;
+  background: var(--secondary-color);
+  color: var(--text-color-light);
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+}
+
+button {
+  background-color: var(--primary-color);
+  color: var(--text-color-light);
+  border: none;
+  padding: 10px 20px;
+  border-radius: var(--border-radius);
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+button:hover:not(:disabled) {
+  background-color: #0056b3;
+}
